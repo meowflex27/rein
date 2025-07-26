@@ -1,0 +1,18 @@
+# Use official Puppeteer image with Chromium pre-installed
+FROM ghcr.io/puppeteer/puppeteer:latest
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files and install dependencies
+COPY package*.json ./
+RUN npm install
+
+# Copy rest of the app
+COPY . .
+
+# Expose port (Render default port is 10000+)
+EXPOSE 3000
+
+# Start your app
+CMD ["node", "index.js"]
