@@ -4,6 +4,10 @@ const puppeteer = require("puppeteer");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.get("/", (req, res) => {
+  res.send("🟢 Puppeteer Screenshot Service is up and running!<br>Try /screenshot?url=https://example.com");
+});
+
 app.get("/screenshot", async (req, res) => {
   const url = req.query.url;
   if (!url) return res.status(400).send("Missing URL");
